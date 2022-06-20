@@ -1,0 +1,53 @@
+root@yang-server:~# history
+    1  apt-get update -y
+    2  curl -sfL https://get.k3s.io | sh -
+    3  curl -sfL https://get.k3s.io | sh
+    4  kubectl get nodes -o wide
+    5  curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+    6  curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | sh
+    7  chmod 700 get_helm.sh
+    8  ./get_helm.sh
+    9  export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+   10  helm list
+   11  helm install rancher rancher-stable/rancher   --namespace cattle-system   --set hostname=yang-infra.ci-qa.rancher.space   --set ingress.tls.source=letsEncrypt   --set letsEncrypt.email=yang.chiu@suse.com
+   12  helm repo add rancher-latest https://releases.rancher.com/server-charts/latest
+   13  kubectl create namespace cattle-system
+   14  kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.4/cert-manager.crds.yaml
+   15  kubectl create namespace cert-manager
+   16  helm repo add jetstack https://charts.jetstack.io
+   17  helm repo update
+   18  helm install cert-manager jetstack/cert-manager --namespace cert-manager --version v1.4.0
+   19  kubectl get pods --namespace cert-manager
+   20  helm install rancher rancher-stable/rancher   --namespace cattle-system   --set hostname=yang-infra.ci-qa.rancher.space   --set ingress.tls.source=letsEncrypt   --set letsEncrypt.email=yang.chiu@suse.com
+   21  helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
+   22  helm repo update
+   23  helm install rancher rancher-stable/rancher   --namespace cattle-system   --set hostname=yang-infra.ci-qa.rancher.space   --set ingress.tls.source=letsEncrypt   --set letsEncrypt.email=yang.chiu@suse.com
+   24  kubectl -n cattle-system rollout status deploy/rancher
+   25  kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}{{"\n"}}'
+   26  add repo in rancher:  https://charts.jenkins.io
+   27  kubectl get ingress
+   28  kubectl get svc
+   29  add repo in rancher:  https://charts.jenkins.io
+   30  kubectl get pods -n jenkins
+   31  kubectl describe pod -n jenkins jenkins-0
+   32  kubectl logs -n jenkins jenkins-0
+   33  kubectl logs -n jenkins jenkins-0 -c init
+   34  kubectl get pods -n jenkins
+   35  kubectl logs -n jenkins jenkins-0 -c init
+   36  kubectl get pods -n jenkins
+   37  kubectl logs -n jenkins jenkins-0 -c init
+   38  kubectl get pods -n jenkins
+   39  kubectl delete pod jenkins-0 -n jenkins
+   40  kubectl get pods -n jenkins
+   41  kubectl logs -n jenkins jenkins-0 -c init
+   42  kubectl logs -n jenkins jenkins-0 -c init -w
+   43  kubectl logs -n jenkins jenkins-0 -c init -f
+   44  kubectl logs -n jenkins jenkins-0
+   45  kubectl logs -n jenkins jenkins-0 -c jenkins
+   46  kubectl logs -n jenkins jenkins-0 -c jenkins | grep 'Boots'
+   47  kubectl logs -n jenkins jenkins-0 -c jenkins | grep -o 'Boots'
+   48  kubectl logs -n jenkins jenkins-0 -c jenkins | grep -o 'boots'
+   49  kubectl exec --namespace jenkins -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo
+   50  ls /root/.cahce
+   51  ls /root/.cache
+   52  history
