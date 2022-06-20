@@ -140,6 +140,7 @@ controller:
     authorizationStrategy: |-
         projectMatrix:
           permissions:
+            - "Overall/Administer:rancher"
             - "Overall/Read:anonymous"
             - "Job/Read:anonymous"
             - "Job/Build:rancher"

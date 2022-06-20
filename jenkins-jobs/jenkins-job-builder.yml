@@ -16,7 +16,7 @@
         [jenkins]
         user=$JJB_USER
         password=$JJB_PASSWORD
-        url=https://ci.longhorn.io
+        url=https://yang-ci.ci-qa.rancher.space/
         query_plugins_info=False
         EOT
 
@@ -36,7 +36,7 @@
     scm:
     - git:
         branches:
-        - '*/master'
+        - '*/local-jenkins'
         url: https://github.com/longhorn/infra.git
     triggers:
     - github
