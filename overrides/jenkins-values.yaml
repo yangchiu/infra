@@ -94,6 +94,7 @@ controller:
   - timestamper:1.17
   - token-macro:280.v97a_82642793c
   - trilead-api:1.0.13
+  - uno-choice:2.6.1
   - workflow-aggregator:2.7
   - workflow-api:1143.v2d42f1e9dea_5
   - workflow-basic-steps:941.vdfe1b_a_132c64
@@ -106,18 +107,19 @@ controller:
   - workflow-step-api:622.vb_8e7c15b_c95a_
   - workflow-support:815.vd60466279fc8
   - ws-cleanup:0.40
+  serviceType: LoadBalancer
   ingress:
     enabled: true
     apiVersion: "networking.k8s.io/v1beta1"
     annotations:
-      kubernetes.io/ingress.class: nginx
+      kubernetes.io/ingress.class: traefik
       cert-manager.io/cluster-issuer: letsencrypt-prod
       nginx.ingress.kubernetes.io/secure-backends: "true"
-    hostName: ci.longhorn.io
+    hostName: yang-ci.ci-qa.rancher.space
     tls:
-    - secretName: ci.longhorn.io
+    - secretName: yang-ci.ci-qa.rancher.space
       hosts:
-      - ci.longhorn.io
+      - yang-ci.ci-qa.rancher.space
   additionalExistingSecrets:
   - name: jenkins-v3-secrets
     keyName: github-oauth-client-id
@@ -138,15 +140,10 @@ controller:
     authorizationStrategy: |-
         projectMatrix:
           permissions:
-            - "Overall/Administer:longhorn*infra"
-            - "Overall/Read:longhorn*qa"
-            - "Overall/Read:longhorn*dev"
             - "Overall/Read:anonymous"
             - "Job/Read:anonymous"
-            - "Job/Build:longhorn*dev"
-            - "Job/Build:longhorn*qa"
-            - "Job/Cancel:longhorn*dev"
-            - "Job/Cancel:longhorn*qa"
+            - "Job/Build:rancher"
+            - "Job/Cancel:rancher"
     configScripts:
       jobs-config: |
         jobs:
@@ -158,14 +155,11 @@ controller:
                         nonInheriting()
                     }
                     permissions([
-                        'Job/Read:longhorn*dev',
-                        'Job/Build:longhorn*dev',
-                        'Job/Cancel:longhorn*dev',
-                        'Job/Read:longhorn*qa',
-                        'Job/Build:longhorn*qa',
-                        'Job/Cancel:longhorn*qa',
-                        'Job/Configure:longhorn*infra',
-                        'Job/Delete:longhorn*infra',
+                        'Job/Read:rancher',
+                        'Job/Build:rancher',
+                        'Job/Cancel:rancher',
+                        'Job/Configure:rancher',
+                        'Job/Delete:rancher',
                     ])
                   }
                 }
@@ -179,19 +173,13 @@ controller:
             operator: In
             values:
             - amd64
-  nodeSelector:
-    beta.kubernetes.io/arch: amd64
-    k3s.io/hostname: longhorn-infra-controlplane
-persistence:
-  enabled: true
-  existingClaim: jenkins-v3
 agent:
   nodeSelector:
     beta.kubernetes.io/arch: amd64
     k3s.io/hostname: longhorn-infra-controlplane
   image: "meldafrawi/jnlp-agent"
   tag: "20220310"
-  jenkinsUrl: "https://ci.longhorn.io"
+  jenkinsUrl: "https://yang-ci.ci-qa.rancher.space"
   maxRequestsPerHostStr: "1024"
   containerCap: 64
   privileged: true
@@ -207,3 +195,6 @@ agent:
     - type: HostPath
       hostPath: /var/run/docker.sock
       mountPath: /var/run/docker.sock
+    - type: HostPath
+      hostPath: /root/.cache/
+      mountPath: /home/jenkins/.cache/
