@@ -23,7 +23,7 @@
       - string:
           name: LONGHORN_MANAGER_BRANCH
           default: "master"
-          description: "longhorn-manager repo branch"
+          description: "longhorn-manager repo branch ok"
       - string:
           name: CUSTOM_LONGHORN_MANAGER_IMAGE
           default: "longhornio/longhorn-manager:master-head"

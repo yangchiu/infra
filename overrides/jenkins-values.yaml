@@ -198,5 +198,5 @@ agent:
       hostPath: /var/run/docker.sock
       mountPath: /var/run/docker.sock
     - type: HostPath
-      hostPath: /root/.cache/
+      hostPath: /home/jenkins/.cache/
       mountPath: /home/jenkins/.cache/
