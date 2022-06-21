@@ -51,3 +51,73 @@ root@yang-server:~# history
    50  ls /root/.cahce
    51  ls /root/.cache
    52  history
+   ---
+   root@yang-server:~# history
+    1  apt-get update -y
+    2  curl -sfL https://get.k3s.io | sh
+    3  ls /etc/
+    4  curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+    5  chmod 700 get_helm.sh
+    6  ./get_helm.sh
+    7  export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+    8  helm list
+    9  helm repo add rancher-latest https://releases.rancher.com/server-charts/latest
+   10  kubectl create namespace cattle-system
+   11  kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v1.0.4/cert-manager.crds.yaml
+   12  kubectl create namespace cert-manager
+   13  helm repo add jetstack https://charts.jetstack.io
+   14  helm repo update
+   15  helm install cert-manager jetstack/cert-manager --namespace cert-manager --version v1.4.0
+   16  kubectl get pods --namespace cert-manager
+   17  helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
+   18  helm repo update
+   19  helm install rancher rancher-stable/rancher   --namespace cattle-system   --set hostname=yang-infra.ci-qa.rancher.space   --set ingress.tls.source=letsEncrypt   --set letsEncrypt.email=yang.chiu@suse.com
+   20  kubectl -n cattle-system rollout status deploy/rancher
+   21  kubectl get all -A
+   22  kubectl get service/traefik -n kube-system -o yaml
+   23  ls
+   24  ls -al
+   25  cd .config/
+   26  ls
+   27  cd helm
+   28  ls
+   29  cd ..
+   30  ls
+   31  cd ..
+   32  ls
+   33  cd /etc/k3s
+   34  ls
+   35  cd /etc
+   36  ls
+   37  cd rancher/
+   38  ls
+   39  cd k3s/
+   40  ls
+   41  ls -al
+   42  cd ..
+   43  ls
+   44  ls -al
+   45  cd node
+   46  ls
+   47  cat password
+   48  cat /var/lib/rancher/k3s/server/manifests/traefik.yaml
+   49  kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5.1/cert-manager.crds.yaml
+   50  helm install cert-manager jetstack/cert-manager   --namespace cert-manager   --create-namespace   --version v1.5.1
+   51  export
+   52  export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+   53  helm install cert-manager jetstack/cert-manager   --namespace cert-manager   --create-namespace   --version v1.5.1
+   54  helm uninstall cert-manager -n cert-manager
+   55  helm install cert-manager jetstack/cert-manager   --namespace cert-manager   --create-namespace   --version v1.5.1
+   56  kubectl get pods --namespace cert-manager
+   57  helm uninstall rancher -n cattle-system
+   58  helm install rancher rancher-stable/rancher   --namespace cattle-system   --set hostname=yang-infra.ci-qa.rancher.space   --set ingress.tls.source=letsEncrypt   --set letsEncrypt.email=yang.chiu@suse.com  --set letsEncrypt.ingress.class=nginx
+   59  kubectl -n cattle-system rollout status deploy/rancher
+   60  history
+
+   helm install rancher rancher-latest/rancher \
+  --namespace cattle-system \
+  --set hostname=yang-infra.ci-qa.rancher.space \
+  --set ingress.tls.source=letsEncrypt \
+  --set letsEncrypt.email=yang.chiu@suse.com \
+  --set letsEncrypt.ingress.class=nginx
+

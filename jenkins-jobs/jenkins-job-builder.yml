@@ -37,7 +37,7 @@
     - git:
         branches:
         - '*/local-jenkins'
-        url: https://github.com/longhorn/infra.git
+        url: https://github.com/yangchiu/infra.git
     triggers:
     - github
     wrappers:

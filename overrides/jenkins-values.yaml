@@ -1,4 +1,6 @@
 ---
+persistence:
+  enabled: false
 controller:
   overwritePlugins: true
   installPlugins:
@@ -112,7 +114,7 @@ controller:
     enabled: true
     apiVersion: "networking.k8s.io/v1beta1"
     annotations:
-      kubernetes.io/ingress.class: traefik
+      kubernetes.io/ingress.class: nginx
       cert-manager.io/cluster-issuer: letsencrypt-prod
       nginx.ingress.kubernetes.io/secure-backends: "true"
     hostName: yang-ci.ci-qa.rancher.space
@@ -177,7 +179,6 @@ controller:
 agent:
   nodeSelector:
     beta.kubernetes.io/arch: amd64
-    k3s.io/hostname: longhorn-infra-controlplane
   image: "meldafrawi/jnlp-agent"
   tag: "20220310"
   jenkinsUrl: "https://yang-ci.ci-qa.rancher.space"
