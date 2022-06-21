@@ -120,4 +120,150 @@ root@yang-server:~# history
   --set ingress.tls.source=letsEncrypt \
   --set letsEncrypt.email=yang.chiu@suse.com \
   --set letsEncrypt.ingress.class=nginx
+  ---
+  1  curl -sfL https://get.rke2.io | sh -
+    2  systemctl enable rke2-server.service
+    3  systemctl start rke2-server.service
+    4  journalctl -u rke2-server -f
+    5  export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
+    6  kubectl get nodes
+    7  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    8  sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+    9  kubectl version --client
+   10  kubectl get nodes
+   11  kubectl get all -A
+   12  helm repo add rancher-latest https://releases.rancher.com/server-charts/latest
+   13  curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+   14  chmod 700 get_helm.sh
+   15  ./get_helm.sh
+   16  helm repo add rancher-stable https://releases.rancher.com/server-charts/stable
+   17  helm repo add rancher-latest https://releases.rancher.com/server-charts/latest
+   18  kubectl create namespace cattle-system
+   19  # If you have installed the CRDs manually instead of with the `--set installCRDs=true` option added to your Helm install command, you should upgrade your CRD resources before upgrading the Helm chart:
+   20  kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5.1/cert-manager.crds.yaml
+   21  # Add the Jetstack Helm repository
+   22  helm repo add jetstack https://charts.jetstack.io
+   23  # Update your local Helm chart repository cache
+   24  helm repo update
+   25  # Install the cert-manager Helm chart
+   26  helm install cert-manager jetstack/cert-manager   --namespace cert-manager   --create-namespace   --version v1.5.1
+   27  kubectl get pods --namespace cert-managerkubectl get pods --namespace cert-manager
+   28  kubectl get pods --namespace cert-manager
+   29  kubectl -n cattle-system rollout status deploy/rancher
+   30  kubectl get secret --namespace cattle-system bootstrap-secret -o go-template='{{.data.bootstrapPassword|base64decode}}{{"\n"}}'
+   31  kubectl get pod -n jenkins
+   32  kubectl describe pod jenkins-0 -n jenkins
+   33  kubectl get nodes
+   34  kubectl get nodes -o wide
+   35  kubectl get nodes -o yaml
+   36  kubectl describe pod jenkins-0 -n jenkins
+   37  kubectl get pod -n jenkins
+   38  kubectl delete pod jenkins-0 -n jenkins
+   39  kubectl get pod -n jenkins
+   40  kubectl describe pod jenkins-0 -n jenkins
+   41  kubectl get all -n jenkins
+   42  kubectl get pod jenkins-0 -n jenkins -o yaml
+   43  kubectl logs jenkins-0 -n jenkins
+   44  kubectl logs jenkins-0 -n jenkins -c config-reload
+   45  kubectl logs jenkins-0 -n jenkins -c init
+   46  kubectl logs jenkins-0 -n jenkins -c jenkins
+   47  iptables
+   48  sudo iptables -P FORWARD ACCEPT
+   49  kubectl get all -n jenkins
+   50  kubectl get pvc
+   51  kubectl get pvc -n jenkions
+   52  kubectl get pvc -n jenkins
+   53  kubectl get pvc -n jenkins -o yaml
+   54  kubectl get nodes -o yaml
+   55  kubectl get pvc -n jenkins -o yaml
+   56  kubectl get all -A
+   57  kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.22/deploy/local-path-storage.yaml
+   58  kubectl get clusterissuers
+   59  kubectl get clusterissuers -A
+   60  ls
+   61  nano issuer.yaml
+   62  kubectl apply -f issuer.yaml
+   63  nano issuer.yaml
+   64  kubectl apply -f issuer.yaml
+   65  kubectl get secret -n jenkins
+   66  kubectl get secret yang-ci.ci-qa.rancher.space -n jenkins -o yaml
+   67  kubectl get clusterissuers.cert-manager.io
+   68  cat -f issuer.yaml
+   69  cat issuer.yaml
+   70  kubectl get pods -n jenkins
+   71  kubectl describe pod default-hfg7d -n jenkins
+   72  kubectl get pods -n jenkins
+   73  ls
+   74  pwd
+   75  ls -al
+   76  cd /tmp
+   77  ls
+   78  ls -al
+   79  cd ls
+   80  ls
+   81  cd ..
+   82  ls
+   83  cd home
+   84  ls
+   85  cd ls
+   86  cd ~
+   87  ls
+   88  ls -al
+   89  ls
+   90  cd /home
+   91  ls
+   92  ls -al
+   93  cd /
+   94  ls
+   95  cd root
+   96  ls
+   97  mkdir test
+   98  ls -al
+   99  cd /
+  100  ls
+  101  cd var/
+  102  ls
+  103  ls -al
+  104  cd tmp
+  105  ls
+  106  ls -al
+  107  cd ../../
+  108  cd ..
+  109  ls
+  110  cd run/
+  111  ls
+  112  ls -al
+  113  cd ..
+  114  ls
+  115  cd usr
+  116  ls
+  117  cd share/
+  118  ls
+  119  ls -al
+  120  cd ../../
+  121  ls
+  122  adduser jenkins
+  123  ls
+  124  cd home
+  125  ls
+  126  cd jenkins/
+  127  ls
+  128  ls -al
+  129  mkdir .cache
+  130  ls
+  131  ls -al
+  132  chmod 777 .cache
+  133  ls
+  134  ls -al
+  135  ls
+  136  ls -al
+  137  cd .cache/
+  138  ls
+  139  cd jenkins_jobs/
+  140  ls
+  141  cd ..
+  142  cd /var
+  143  ls
+  144  history
+
 
