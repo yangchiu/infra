@@ -1,6 +1,6 @@
 ---
 controller:
-  tag: "2.401.1-jdk11"
+  tag: "2.452.1-jdk17"
   overwritePlugins: false
   installPlugins:
   - kubernetes-client-api
@@ -159,19 +159,19 @@ controller:
             - "Overall/Read:longhorn*dev"
             - "Overall/Read:anonymous"
             - "Job/Read:anonymous"
-            - "Job/Build:longhorn*dev"            
+            - "Job/Build:longhorn*dev"
             - "Job/Build:longhorn*qa"
             - "Job/Cancel:longhorn*dev"
             - "Job/Cancel:longhorn*qa"
     configScripts:
-      jobs-config: |                                                            
-        jobs:                                                                   
-          - script: >                                                           
-              folder('private') {                                               
-                properties {                                                    
-                  authorizationMatrix {                                         
-                    inheritanceStrategy {                                       
-                        nonInheriting()                                         
+      jobs-config: |
+        jobs:
+          - script: >
+              folder('private') {
+                properties {
+                  authorizationMatrix {
+                    inheritanceStrategy {
+                        nonInheriting()
                     }
                     entries {
                       group {
@@ -192,9 +192,9 @@ controller:
                           'Job/Configure', 'Job/Delete'
                         ])
                       }
-                    }                                                        
-                  }                                                             
-                }                                                               
+                    }
+                  }
+                }
               }
   affinity:
     nodeAffinity:
@@ -214,8 +214,9 @@ persistence:
 agent:
   nodeSelector:
     beta.kubernetes.io/arch: amd64
-  image: "meldafrawi/jnlp-agent"
-  tag: "20220310"
+    k3s.io/hostname: longhorn-infra-controlplane-2
+  image: "yangchiu/jnlp-agent"
+  tag: "latest"
   jenkinsUrl: "https://ci.longhorn.io"
   maxRequestsPerHostStr: "1024"
   containerCap: 64

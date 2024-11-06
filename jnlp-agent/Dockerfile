@@ -1,4 +1,4 @@
-FROM jenkins/inbound-agent:latest-jdk11
+FROM jenkins/inbound-agent:latest-jdk17
 
 ENV GIT_VERSION 2.33.0
 
@@ -51,6 +51,6 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s
     chmod +x kubectl && \
     mv kubectl /usr/bin/kubectl
 
-RUN pip3 install jenkins-job-builder
+RUN pip3 install --break-system-packages jenkins-job-builder
 
 USER jenkins
